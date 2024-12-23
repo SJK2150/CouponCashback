@@ -73,13 +73,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "resetAllRedemptions",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
