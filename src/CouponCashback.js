@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import CouponRedemptionABI from "./CouponRedemptionABI.json";
 import background from "./background.png"
+import { Sparkles, Wallet, Gift, ArrowRight } from "lucide-react";
 
 const CouponRedemptionPortal = () => {
   const [couponCode, setCouponCode] = useState("");
@@ -19,105 +20,103 @@ const CouponRedemptionPortal = () => {
 
   const contractAddress = "0x1CB8Da838175634976f5B66F627d50C1c759B6E8";
 
-  const containerStyle = {
-    minHeight: "100vh",
-    padding: "2rem",
-    backgroundImage: `url(${background})`,
-    backgroundColor: "#0B062B",
-    backgroundBlend: "overlay",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    color: "white",
-    fontFamily: "'Inter', sans-serif",
-  };
-
-  const cardStyle = {
-    background: "rgba(11, 6, 43, 0.2)", // More transparent background
-    backdropFilter: "blur(8px)",
-    borderRadius: "1rem",
-    padding: "2rem",
-    width: "80%",
-    maxWidth: "500px",
-    boxShadow: "0 8px 32px 0 rgba(8, 212, 248, 0.2)", // Lighter shadow
-    border: "1px solid rgba(10, 212, 231, 0.1)", // More subtle border
-    marginTop: "2rem",
-  };
-
-  const titleStyle = {
-    fontSize: "2rem",
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: "2rem",
-    background: "linear-gradient(45deg, #00f2fe, #4facfe)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    textShadow: "0 0 20px rgba(0, 242, 254, 0.3)", // Added glow effect
-  };
-
-  const buttonStyle = {
-    background: "linear-gradient(45deg, #00f2fe, #4facfe)",
-    border: "none",
-    padding: "0.8rem 1.5rem",
-    borderRadius: "0.5rem",
-    color: "white",
-    fontSize: "1rem",
-    cursor: "pointer",
-    width: "100%",
-    transition: "transform 0.2s, opacity 0.2s",
-    marginTop: "1rem",
-    boxShadow: "0 4px 15px rgba(0, 242, 254, 0.2)", // Added subtle glow
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "0.8rem",
-    borderRadius: "0.5rem",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
-    background: "rgba(255, 255, 255, 0.05)", // More transparent input
-    color: "white",
-    fontSize: "1rem",
-    marginBottom: "1rem",
-    transition: "border-color 0.2s",
-    outline: "none",
-  };
-
-  const couponListStyle = {
-    listStyle: "none",
-    padding: 0,
-    margin: "1rem 0",
-  };
-
-  const couponItemStyle = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "0.8rem",
-    margin: "0.5rem 0",
-    background: "rgba(255, 255, 255, 0.03)", // More transparent items
-    borderRadius: "0.5rem",
-    border: "1px solid rgba(255, 255, 255, 0.05)",
-    transition: "transform 0.2s",
-  };
-
-  const errorStyle = {
-    background: "rgba(255, 59, 48, 0.08)", // More transparent error
-    color: "#ff3b30",
-    padding: "1rem",
-    borderRadius: "0.5rem",
-    marginTop: "1rem",
-    textAlign: "center",
-  };
-
-  const successStyle = {
-    background: "rgba(52, 199, 89, 0.08)", // More transparent success
-    color: "#34c759",
-    padding: "1rem",
-    borderRadius: "0.5rem",
-    marginTop: "1rem",
-    textAlign: "center",
+  
+  const styles = {
+    container: {
+      minHeight: "100vh",
+      padding: "2rem",
+      backgroundImage: `url(${background})`,
+      backgroundColor: "#0B062B",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      color: "white",
+      fontFamily: "'Inter', sans-serif",
+    },
+    card: {
+      background: "rgba(11, 6, 43, 0.2)",
+      backdropFilter: "blur(8px)",
+      borderRadius: "1.5rem",
+      padding: "2.5rem",
+      width: "80%",
+      maxWidth: "500px",
+      boxShadow: "0 8px 32px 0 rgba(8, 212, 248, 0.2)",
+      border: "1px solid rgba(10, 212, 231, 0.15)",
+      marginTop: "2rem",
+    },
+    title: {
+      fontSize: "2.5rem",
+      fontWeight: "bold",
+      textAlign: "center",
+      marginBottom: "2.5rem",
+      background: "linear-gradient(45deg, #00f2fe, #4facfe)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    },
+    button: {
+      background: "linear-gradient(45deg, #00f2fe, #4facfe)",
+      border: "none",
+      padding: "1rem 1.5rem",
+      borderRadius: "0.8rem",
+      color: "white",
+      fontSize: "1.1rem",
+      cursor: "pointer",
+      width: "100%",
+      marginTop: "1rem",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "0.5rem",
+    },
+    input: {
+      width: "100%",
+      padding: "1rem",
+      borderRadius: "0.8rem",
+      border: "1px solid rgba(10, 212, 231, 0.2)",
+      background: "rgba(255, 255, 255, 0.03)",
+      color: "white",
+      fontSize: "1.1rem",
+      marginBottom: "1rem",
+      outline: "none",
+    },
+    couponList: {
+      listStyle: "none",
+      padding: 0,
+      margin: "1.5rem 0",
+    },
+    couponItem: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "1rem",
+      margin: "0.8rem 0",
+      background: "rgba(255, 255, 255, 0.05)",
+      borderRadius: "0.8rem",
+      border: "1px solid rgba(10, 212, 231, 0.1)",
+    },
+    error: {
+      background: "rgba(255, 59, 48, 0.08)",
+      color: "#ff3b30",
+      padding: "1rem",
+      borderRadius: "0.5rem",
+      marginTop: "1rem",
+      textAlign: "center",
+    },
+    success: {
+      background: "rgba(52, 199, 89, 0.08)",
+      color: "#34c759",
+      padding: "1rem",
+      borderRadius: "0.5rem",
+      marginTop: "1rem",
+      textAlign: "center",
+    },
+    iconContainer: {
+      display: "flex",
+      alignItems: "center",
+      gap: "0.5rem",
+    }
   };
 
   // Original functionality remains the same
@@ -214,51 +213,65 @@ const CouponRedemptionPortal = () => {
   }, []);
 
   return (
-    <div style={containerStyle}>
-      <div style={cardStyle}>
-        <h1 style={titleStyle}>Coupon Redemption Portal</h1>
+    <div style={styles.container}>
+      <div style={styles.card}>
+        <div style={styles.iconContainer}>
+          <h1 style={styles.title}>
+            
+            Coupon Redemption 
+          </h1>
+        </div>
+
         {!isWalletConnected ? (
-          <button style={buttonStyle} onClick={connectWallet}>
+          <button style={styles.button} onClick={connectWallet}>
+            <Wallet size={24} />
             Connect Wallet
           </button>
         ) : (
           <>
-            <input
-              type="text"
-              value={couponCode}
-              onChange={(e) => setCouponCode(e.target.value)}
-              placeholder="Enter coupon code"
-              style={inputStyle}
-            />
+            <div style={{ position: "relative" }}>
+              <input
+                type="text"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                placeholder="Enter coupon code"
+                style={styles.input}
+              />
+              <Gift size={20} style={{ position: "absolute", right: "1rem", top: "1rem", opacity: 0.5 }} />
+            </div>
+
             <button
               onClick={redeemCoupon}
               disabled={isRedeeming}
               style={{
-                ...buttonStyle,
+                ...styles.button,
                 opacity: isRedeeming ? 0.7 : 1,
                 cursor: isRedeeming ? "not-allowed" : "pointer",
               }}
             >
               {isRedeeming ? "Redeeming..." : "Redeem Coupon"}
+              {!isRedeeming && <ArrowRight size={20} />}
             </button>
 
             {cashback > 0 && (
-              <div style={successStyle}>
+              <div style={styles.success}>
                 <p>Cashback: {cashback} ETH</p>
               </div>
             )}
 
             {error && (
-              <div style={errorStyle}>
+              <div style={styles.error}>
                 <p>{error}</p>
               </div>
             )}
 
             <div style={{ marginTop: "2rem" }}>
-              <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>Available Coupons</h2>
-              <ul style={couponListStyle}>
+              <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
+                Available Coupons
+              </h2>
+              <ul style={styles.couponList}>
                 {Object.entries(coupons).map(([code, rate]) => (
-                  <li key={code} style={couponItemStyle}>
+                  <li key={code} style={styles.couponItem}>
                     <span style={{ fontWeight: "bold" }}>{code}</span>
                     <span>{rate}% cashback</span>
                   </li>
